@@ -14,6 +14,7 @@ import {
 class DetailView extends Component{
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
 
@@ -24,7 +25,7 @@ class DetailView extends Component{
   render() {
     return (
       <View style={styles.container}>
-
+        <Text>{JSON.stringify(this.props.data)}</Text>
       </View>
 
     )

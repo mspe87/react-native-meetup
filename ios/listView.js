@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 
+import {Actions} from 'react-native-router-flux'
 import myApi from '../api';
 
 
@@ -43,9 +44,9 @@ class MyListView extends Component{
       <View style={styles.container}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={(rowData) =><TouchableHighlight onPress={()=>{console.log("p")}} >
+          renderRow={(rowData) =><TouchableHighlight onPress={()=>{Actions.detailEvent({data: rowData})}} >
             <Text style={styles.meetText}>{rowData.name}</Text></TouchableHighlight>}
-            />
+        />
 
           </View>
 
