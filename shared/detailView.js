@@ -18,14 +18,22 @@ class DetailView extends Component{
   }
 
 
-
+  removeHtml(input){
+    return input;
+  }
 
 
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>{JSON.stringify(this.props.data)}</Text>
+        <Text style={styles.heading}>{this.props.data.name}</Text>
+        <Text>{this.removeHtml(this.props.data.description)}</Text>
+        <TouchableHighlight onPress={()=>{alert("SEND ...")}}>
+          <Text>
+                        RSVP
+          </Text>
+        </TouchableHighlight>
       </View>
 
     )
@@ -34,10 +42,13 @@ class DetailView extends Component{
 
 var styles = StyleSheet.create({
   container: {
-    marginTop: 40,
+    marginTop: 40+40,
     flex: 1,
     alignItems: 'center'
   },
+  heading: {
+    fontSize: 30
+  }
 })
 
 export default DetailView;
