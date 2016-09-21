@@ -7,10 +7,8 @@ import {
   View
 } from 'react-native';
 
-import {Actions} from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux';
 import myApi from '../api';
-
-
 
 class MyListView extends Component{
   constructor(props) {

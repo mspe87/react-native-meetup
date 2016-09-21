@@ -4,25 +4,47 @@ import {
   Text,
   ListView,
   TouchableHighlight,
-  View
+  View,
+  Alert,
+  Switch
 } from 'react-native';
-
-
-
+import {Actions} from 'react-native-router-flux';
+import myKey from '../MEETUPAPIKEY.js'
 
 
 class DetailView extends Component{
   constructor(props) {
     super(props);
-    console.log(props);
+       
+
+    // The default state for the Switch UI element
+    this.state = {
+      falseSwitchIsOn: false
+    }
+  }
+
+  async componentDidMount() {
+   await this.updateTitle();
+     
+  }
+
+  updateMyRSVP(){
+    const urlForfetchRSVSP = `https://api.meetup.com/${this.props.navigationState.data.group.urlname}/events/${this.props.navigationState.data.id}/rsvps?sign=true&key=${myKey}&response=yes`
+    console.log(urlForfetchRSVSP);
+    this.setState({falseSwitchIsOn: true})
+    return fetch(urlForfetchRSVSP).then(res => res.json());
+  }
+
+  updateTitle() {
+    // Updating the "Title" of the View. 
+    // "Title" is the text on the Top Bar.
+    Actions.refresh({title: this.props.navigationState.data.name});
   }
 
 
   removeHtml(input){
     return input;
   }
-
-
 
   render() {
     return (
@@ -34,6 +56,15 @@ class DetailView extends Component{
                         RSVP
           </Text>
         </TouchableHighlight>
+
+        <View>
+        <Text>My current RSVP:</Text>
+        <Switch
+          onValueChange={(value) => this.updateMyRSVP() }
+          style={{marginBottom: 10}}
+          value={this.state.falseSwitchIsOn} />
+        
+        </View>
       </View>
 
     )
