@@ -12,10 +12,15 @@ import {
   View
 } from 'react-native';
 
+import ListView from './ios/listView';
+
+
+
 class newProject extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <ListView/>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
