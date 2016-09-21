@@ -10,28 +10,24 @@ import {
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
 
-import ListView from './ios/listView';
+import ListView from './ios/listView'
+import DetailView from './shared/detailView'
+
+import {Scene, Router} from 'react-native-router-flux'
 
 
 
 class newProject extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <ListView/>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Router>
+        <Scene key="root">
+          <Scene key="list" component={ListView} initial={true} title="My events"/>
+          <Scene key="detailEvent" component={DetailView}/>
+        </Scene>
+      </Router>
     );
   }
 }
